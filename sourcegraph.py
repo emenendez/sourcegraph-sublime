@@ -25,7 +25,7 @@ def gitRemotes(repoDir):
 # gitRemoteURL returns the remote URL for the given remote name.
 # e.g. 'origin' -> 'git@github.com:foo/bar'
 def gitRemoteURL(repoDir, remoteName):
-	proc = subprocess.Popen(['git', 'remote', 'get-url', remoteName], stdout=subprocess.PIPE, cwd=repoDir, startupinfo=startupinfo)
+	proc = subprocess.Popen(['git', 'config', '--get', 'remote.{}.url'.format(remoteName)], stdout=subprocess.PIPE, cwd=repoDir, startupinfo=startupinfo)
 	return proc.stdout.read().decode('utf-8').rstrip()
 
 # gitDefaultRemoteURL returns the remote URL of the first Git remote found. An
